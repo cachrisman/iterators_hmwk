@@ -16,7 +16,7 @@ var coupons = [
 ];
 
 var $entries, $subTotal, subTotalPrice, $tax, salesTax, taxrate = 0.0725,
-    $total, total;
+    $total, total, hasRun = false;
 
 $(document).ready(function() {
 
@@ -25,8 +25,13 @@ $(document).ready(function() {
     $tax = $('#salestax');
     $total = $('#total');
 
-    applyCoupons(coupons, line_items);
-    zepplinDiscount(line_items);
+    createTable();
+    $('form').on("submit", inputNew);
+});
+
+function createTable () {
+    if (!hasRun) applyCoupons(coupons, line_items);
+    if (!hasRun) zepplinDiscount(line_items);
     formatDescriptions(line_items);
     sort(line_items);
 
@@ -39,7 +44,8 @@ $(document).ready(function() {
     updateTotal();
     checkRefund(line_items);
     $("td:contains('-')").addClass('red');
-});
+    hasRun = hasRun || true;
+}
 
 function addItem(price, title, quantity) {
     var html_string = (myUtils.buildElement("tr",
@@ -120,4 +126,13 @@ function applyCoupons (coupon_array, items_array) {
       }
     });
   });
+}
+
+function inputNew(e) {
+  e.preventDefault();
+  name = $('#nameInput').val();
+  amount = $('#amountInput').val();
+  line_items.push({description:name,price:amount,qty:1});
+  $entries.html("");
+  createTable();
 }
