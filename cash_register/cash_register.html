@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Receipt</title>
-	<link rel='stylesheet' href='cash_register.css'>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="my_utils.js"></script>
-	<script src="cash_register.js"></script>
+    <meta charset="UTF-8">
+    <title>Receipt</title>
+    <link rel='stylesheet' href='cash_register.css'>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="my_utils.js"></script>
+    <script src="cash_register.js"></script>
 </head>
+
 <body>
-	<div class="register">
-	  <div id="ticket">
-	    <h1>Receipt</h1>
-	    <table>
-	    <tr id="labels">
-	    	<th>item</th>
-	    	<th>quantity</th>
-	    	<th>price (each)</th>
-	    </tr>
-	      <tbody id="entries">
-	      </tbody>
-	      <tfoot class="summary">
-          <tr>
-            <th>SUBTOTAL</th>
-            <th></th>
-            <th id="subtotal">$0.00</th>
-          </tr>
-          <tr>
-            <th>SALES TAX</th>
-            <th></th>
-            <th id="salestax">$0.00</th>
-          </tr>
-	        <tr>
-	          <th>TOTAL</th>
-            	<th></th>
-	          <th id="total">$0.00</th>
-	        </tr>
-	      </tfoot>
-	    </table>
-	  </div>
-<!--
+    <div class="register">
+        <div id="ticket">
+            <h1>Receipt</h1>
+            <table>
+                <tr id="labels">
+                    <th>item</th>
+                    <th>quantity</th>
+                    <th>price (each)</th>
+                </tr>
+                <tbody id="entries">
+                </tbody>
+                <tfoot class="summary">
+                    <tr>
+                        <th>SUBTOTAL</th>
+                        <th></th>
+                        <th id="subtotal">$0.00</th>
+                    </tr>
+                    <tr>
+                        <th>SALES TAX</th>
+                        <th></th>
+                        <th id="salestax">$0.00</th>
+                    </tr>
+                    <tr>
+                        <th>TOTAL</th>
+                        <th></th>
+                        <th id="total">$0.00</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!--
 	  <form id="entry">
       <input id="nameInput" autofocus placeholder="Item Name?">
       <input id="amountInput" autofocus placeholder="How Much?">
 	    <input type="submit">
 	  </form>
 -->
-	</div>
-	
+    </div>
 </body>
+
 </html>
