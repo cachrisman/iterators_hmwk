@@ -35,6 +35,7 @@ $(document).ready(function() {
     updateSubTotal();
     updateSalesTax();
     updateTotal();
+    checkRefund(line_items);
 });
 
 function addItem(price, title, quantity) {
@@ -86,4 +87,14 @@ function formatDescriptions(array) {
   myUtils.myEach(array, function(v, i, a){
     a[i].description = a[i].description.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   });
+}
+
+function checkRefund(array) {
+  var hasRefund = false;
+  myUtils.myEach(array, function(v, i, a){
+    if (v.qty < 0) hasRefund = true;
+  });
+  if (hasRefund) {
+    $('#refund').text('Contains Refund');
+  }
 }
