@@ -25,6 +25,7 @@ $(document).ready(function() {
     $tax = $('#salestax');
     $total = $('#total');
 
+    zepplinDiscount(line_items);
     formatDescriptions(line_items);
     sort(line_items);
 
@@ -98,4 +99,10 @@ function checkRefund(array) {
   if (hasRefund) {
     $('#refund').text('Contains Refund');
   }
+}
+
+function zepplinDiscount (array) {
+  myUtils.myEach(array, function(v, i, a){
+    if (v.description === 'zepplin') v.price = v.price * 0.9;
+  });
 }
