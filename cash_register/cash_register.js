@@ -25,6 +25,9 @@ $(document).ready(function() {
     $tax = $('#salestax');
     $total = $('#total');
 
+    formatDescriptions(line_items);
+    sort(line_items);
+
     myUtils.myEach(line_items, function(v, i) {
         addItem(v.price, v.description, v.qty);
     });
@@ -67,7 +70,7 @@ function sort(array) {
         idx = i;
         min = a[i];
         for (var j = i + 1; j < a.length; j += 1) {
-            if (min.description.toLowerCase() > a[j].description.toLowerCase()) {
+            if (min.description > a[j].description) {
                 min = a[j];
                 idx = j;
             }
@@ -77,4 +80,10 @@ function sort(array) {
         a[idx] = temp;
     });
     return array;
+}
+
+function formatDescriptions(array) {
+  myUtils.myEach(array, function(v, i, a){
+    a[i].description = a[i].description.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  });
 }
