@@ -25,6 +25,7 @@ $(document).ready(function() {
     $tax = $('#salestax');
     $total = $('#total');
 
+    applyCoupons(coupons, line_items);
     zepplinDiscount(line_items);
     formatDescriptions(line_items);
     sort(line_items);
@@ -104,5 +105,19 @@ function checkRefund(array) {
 function zepplinDiscount (array) {
   myUtils.myEach(array, function(v, i, a){
     if (v.description === 'zepplin') v.price = v.price * 0.9;
+  });
+}
+
+function applyCoupons (coupon_array, items_array) {
+  myUtils.myEach(coupon_array, function(v, i, a){
+    var limit = v.limit;
+    myUtils.myEach(items_array, function(vv, ii, aa) {
+      if (v.description.toLowerCase() === vv.description.toLowerCase()) {
+        while (limit > 0) {
+          aa[ii].price -= v.discount;
+          limit--;
+        }
+      }
+    });
   });
 }

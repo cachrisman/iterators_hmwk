@@ -87,7 +87,7 @@ body {
     position: absolute;
     /**adjust as needed**/
 
-    top: 75%;
+    top: 35%;
     left: 40%;
     /**note: CSS3 TRANSFORM: ROTATE DOESN'T WORK IN ALL BROWSERS YET**/
 
