@@ -36,6 +36,7 @@ $(document).ready(function() {
     updateSalesTax();
     updateTotal();
     checkRefund(line_items);
+    $("td:contains('-')").addClass('red');
 });
 
 function addItem(price, title, quantity) {
