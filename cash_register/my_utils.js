@@ -8,7 +8,7 @@
 
     myUtils = {};
 
-    myUtils.myEach = function myEach(arr, cb) {
+    myUtils.myEach = function(arr, cb) {
         var len = arr.length;
         for (var i = 0; i < len; i++) {
             cb(arr[i], i, arr);
@@ -41,7 +41,7 @@
     // myUtils.buildElement
 
     myUtils.buildElement = function(ele, str) {
-        return "<"+ele+">"+str+"</"+ele+">";
+        return "<" + ele + ">" + str + "</" + ele + ">";
     };
 
     // myUtils.toDollarAmount;
@@ -54,9 +54,7 @@
     // myUtils.toCurrencyString;
     //(12.971, "$") -> $12.97
     myUtils.toCurrencyString = function(num, symbol) {
-        return symbol+toDollarAmount(num);
+        return symbol + myUtils.toDollarAmount(num);
     };
-
-    exports.myUtils = myUtils;
 
 }.call(this));

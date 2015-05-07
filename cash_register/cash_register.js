@@ -1,5 +1,3 @@
-var myUtils = require('./my_utils');
-
 var line_items = [
     {description: "aardvark", price: 425,     qty: -1},
     {description: "PruNe",    price: 1.99,    qty: 1},
@@ -17,21 +15,22 @@ var coupons = [
     {description: "mouse",  discount: 2.00, limit: 10}
 ];
 
-var $entries,
-    $subTotal;
+var $entries, $subTotal, subTotalPrice, $tax, salesTax, taxrate = 0.0725, $total, total;
 
 $(document).ready(function(){
 
    $entries = $("#entries");
    $subTotal = $('#subtotal');
+   $tax = $('#salestax');
+   $total = $('#total');
 
   myUtils.myEach(line_items, function(v,i){
     addItem(v.price, v.description, v.qty);
   });
 
   updateSubTotal();
-
-
+  updateSalesTax();
+  updateTotal();
 });
 
 function addItem(price, title, quantity) {
@@ -47,7 +46,25 @@ function addItem(price, title, quantity) {
 }
 
 function updateSubTotal() {
-// Refactor this using our helper functions :D
-  var subTotalPrice = 0; // !! That won't do! Calculate the actual subtotal.
-  $subTotal.text("$" + price);
+  subTotalPrice = myUtils.myReduce(line_items, function(sum, item){return sum + item.qty*item.price;});
+  $subTotal.text(myUtils.toCurrencyString(subTotalPrice, "$"));
 }
+
+function updateSalesTax() {
+  salesTax = subTotalPrice * taxrate;
+  $tax.text(myUtils.toCurrencyString(salesTax, "$"));
+}
+
+function updateTotal() {
+  total = subTotalPrice + salesTax;
+  $total.text(myUtils.toCurrencyString(total, "$"));
+}
+
+
+
+
+
+
+
+
+
