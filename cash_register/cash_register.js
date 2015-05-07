@@ -15,56 +15,66 @@ var coupons = [
     {description: "mouse",  discount: 2.00, limit: 10}
 ];
 
-var $entries, $subTotal, subTotalPrice, $tax, salesTax, taxrate = 0.0725, $total, total;
+var $entries, $subTotal, subTotalPrice, $tax, salesTax, taxrate = 0.0725,
+    $total, total;
 
-$(document).ready(function(){
+$(document).ready(function() {
 
-   $entries = $("#entries");
-   $subTotal = $('#subtotal');
-   $tax = $('#salestax');
-   $total = $('#total');
+    $entries = $("#entries");
+    $subTotal = $('#subtotal');
+    $tax = $('#salestax');
+    $total = $('#total');
 
-  myUtils.myEach(line_items, function(v,i){
-    addItem(v.price, v.description, v.qty);
-  });
+    myUtils.myEach(line_items, function(v, i) {
+        addItem(v.price, v.description, v.qty);
+    });
 
-  updateSubTotal();
-  updateSalesTax();
-  updateTotal();
+    updateSubTotal();
+    updateSalesTax();
+    updateTotal();
 });
 
 function addItem(price, title, quantity) {
-  // YUCK! Let's refactor this!
-  var html_string = (
-        "<tr>" +
-          "<td>" +  title + "</td>" +
-          "<td>" + quantity + "</td>" +
-          "<td>" + price + "</td>" +
-        "</tr>"
-  );
-  $entries.append(html_string);
+    var html_string = (myUtils.buildElement("tr",
+            myUtils.buildElement("td", title) +
+            myUtils.buildElement("td", quantity) +
+            myUtils.buildElement("td", price)
+        )
+    );
+    $entries.append(html_string);
 }
 
 function updateSubTotal() {
-  subTotalPrice = myUtils.myReduce(line_items, function(sum, item){return sum + item.qty*item.price;});
-  $subTotal.text(myUtils.toCurrencyString(subTotalPrice, "$"));
+    subTotalPrice = myUtils.myReduce(line_items, function(sum, item) {
+        return sum + item.qty * item.price;
+    });
+    $subTotal.text(myUtils.toCurrencyString(subTotalPrice, "$"));
 }
 
 function updateSalesTax() {
-  salesTax = subTotalPrice * taxrate;
-  $tax.text(myUtils.toCurrencyString(salesTax, "$"));
+    salesTax = subTotalPrice * taxrate;
+    $tax.text(myUtils.toCurrencyString(salesTax, "$"));
 }
 
 function updateTotal() {
-  total = subTotalPrice + salesTax;
-  $total.text(myUtils.toCurrencyString(total, "$"));
+    total = subTotalPrice + salesTax;
+    $total.text(myUtils.toCurrencyString(total, "$"));
 }
 
-
-
-
-
-
-
-
-
+function sort(array) {
+    myUtils.myEach(array, function(v, i, a) {
+        var min, idx, temp;
+        idx = i;
+        min = a[i];
+        for (var j = i + 1; j < a.length; j += 1) {
+            if (min.description.toLowerCase() > a[j].description.toLowerCase()) {
+                min = a[j];
+                idx = j;
+            }
+        }
+        temp = a[i];
+        a[i] = min;
+        a[idx] = temp;
+    });
+    return array;
+}
