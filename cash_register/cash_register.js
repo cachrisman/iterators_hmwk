@@ -1,3 +1,5 @@
+var myUtils = require('./my_utils');
+
 var line_items = [
     {description: "aardvark", price: 425,     qty: -1},
     {description: "PruNe",    price: 1.99,    qty: 1},

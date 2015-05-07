@@ -48,7 +48,7 @@
 
     // (12.971) -> 12.97
     myUtils.toDollarAmount = function(num) {
-        return num;
+        return parseFloat(Math.round(num * 100) / 100).toFixed(2);
     };
 
     // myUtils.toCurrencyString;
@@ -57,5 +57,6 @@
         return symbol+toDollarAmount(num);
     };
 
+    exports.myUtils = myUtils;
 
 }.call(this));
