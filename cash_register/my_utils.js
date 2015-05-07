@@ -40,8 +40,22 @@
 
     // myUtils.buildElement
 
+    myUtils.buildElement = function(ele, str) {
+        return "<"+ele+">"+str+"</"+ele+">";
+    };
+
     // myUtils.toDollarAmount;
 
+    // (12.971) -> 12.97
+    myUtils.toDollarAmount = function(num) {
+        return num;
+    };
+
     // myUtils.toCurrencyString;
+    //(12.971, "$") -> $12.97
+    myUtils.toCurrencyString = function(num, symbol) {
+        return symbol+toDollarAmount(num);
+    };
+
 
 }.call(this));
