@@ -54,6 +54,8 @@
     // myUtils.toCurrencyString;
     //(12.971, "$") -> $12.97
     myUtils.toCurrencyString = function(num, symbol) {
+        // if (num%1 === 0) return symbol + myUtils.toDollarAmount(num) + ".00";
+        // if (num%0.1 === 0) return symbol + myUtils.toDollarAmount(num) + "0";
         return symbol + myUtils.toDollarAmount(num);
     };
 

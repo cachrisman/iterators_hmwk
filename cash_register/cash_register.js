@@ -51,7 +51,7 @@ function addItem(price, title, quantity) {
     var html_string = (myUtils.buildElement("tr",
             myUtils.buildElement("td", title) +
             myUtils.buildElement("td", quantity) +
-            myUtils.buildElement("td", price)
+            myUtils.buildElement("td", myUtils.toCurrencyString(price, "$"))
         )
     );
     $entries.append(html_string);
