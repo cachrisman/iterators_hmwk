@@ -16,7 +16,6 @@
     };
 
     // myUtils.myMap
-
     myUtils.myMap = function(arr, cb) {
         var len = arr.length;
         var newArr = [];
@@ -27,7 +26,6 @@
     };
 
     // myUtils.myReduce
-
     myUtils.myReduce = function(arr, cb, val) {
         var len = arr.length;
         val = val || 0;
@@ -37,15 +35,12 @@
         return val;
     };
 
-
     // myUtils.buildElement
-
     myUtils.buildElement = function(ele, str) {
         return "<" + ele + ">" + str + "</" + ele + ">";
     };
 
     // myUtils.toDollarAmount;
-
     // (12.971) -> 12.97
     myUtils.toDollarAmount = function(num) {
         return parseFloat(Math.round(num * 100) / 100).toFixed(2);
@@ -54,8 +49,6 @@
     // myUtils.toCurrencyString;
     //(12.971, "$") -> $12.97
     myUtils.toCurrencyString = function(num, symbol) {
-        // if (num%1 === 0) return symbol + myUtils.toDollarAmount(num) + ".00";
-        // if (num%0.1 === 0) return symbol + myUtils.toDollarAmount(num) + "0";
         return symbol + myUtils.toDollarAmount(num);
     };
 
